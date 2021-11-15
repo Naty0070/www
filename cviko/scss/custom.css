@@ -1,0 +1,13 @@
+html {
+  scroll-behavior: smooth;
+  /*nefunguje ve vsech prohlizecich*/ }
+
+#home {
+  background: url(../images/hotelview.jfif) bottom center/cover no-repeat;
+  min-height: 750px;
+  position: relative; }
+  #home h1 {
+    font-family: "Questrial", sans-serif;
+    line-height: 1; }
+
+/*# sourceMappingURL=custom.css.map */

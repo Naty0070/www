@@ -1,0 +1,81 @@
+html {
+    scroll-behavior: smooth;    /*nefunguje ve vsech prohlizecich*/
+}
+#home{
+    background: url(../images/see.jpg) bottom center / cover no-repeat;
+    min-height: 750px;
+    position: relative;
+    h1{
+        font-family: "Questrial", sans-serif;
+        line-height: 1;
+    }
+}
+#overlay{
+    background: rgba(0,0,0,0.4);
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+#header{
+    z-index: 2;
+}
+#form{
+    z-index: 2;
+    background-color: rgba(0,0,0,0.4);
+    
+}
+.navbar {   
+    z-index: 3;
+
+    /*vnorovani diky sass*/
+    .navbar-brand h3 {
+        font-weight: 100;
+
+    }
+
+    .nav-item {
+        font-size: 1.4rem;
+    }
+
+    .nav-link:hover{
+        border-bottom: 1px solid black;
+    }
+
+}   
+
+#historie .ods1{
+    font-family: Questrial, sans-serif;
+
+}
+#historie .ods2{
+    font-family: Raleway, sans-serif;
+
+}
+#his img{
+    width: 100%;
+    height: 100%;
+}
+#kontakty{
+    i{
+        opacity: 0.4;
+        color: rgba(57, 18, 228, 0.911);
+    }
+}
+#kontakty2{
+    font-size: x-large;
+}
+
+
+.navbar{
+    background: #1f1f1f;
+    
+    .nav-link:hover{
+        border: none;
+    }
+}
+
+
+
