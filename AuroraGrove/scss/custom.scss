@@ -1,0 +1,102 @@
+html {
+    scroll-behavior: smooth;    /*nefunguje ve vsech prohlizecich*/
+}
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+.navbar {
+    font-weight: 100;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+
+    /*vnorovani diky sass*/
+    .navbar-brand h3 {
+        font-weight: 100;
+
+    }
+
+    .nav-item {
+        font-size: 1.4rem;
+    }
+
+    .nav-link:hover{
+        border-bottom: 1px solid white;
+    }
+
+}   
+
+#showcase{
+    background: url(../images/main.jpeg) bottom center / cover no-repeat;
+    min-height: 750px;
+    position: relative;
+    h1{
+        font-family: "Questrial", sans-serif;
+        line-height: 1;
+    }
+    #butBook{
+        font-size: 1.5rem;
+        border-radius: 2rem;
+        position: relative;     /*have to by relative to position sons into element!*/
+        overflow: hidden;
+    }
+    #butBook::before{
+        content: "BOOK NOW";            /*musi mit nejaky content!!*/
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 1.5rem;
+        transform-origin: center;
+        text-align: center;
+        transform: scale(6);
+        visibility: hidden;
+        transition: transform 2s,
+        color 1s,
+        visibility .6s;
+    }
+    #butBook:hover::before{
+        transform: scale(1) translateY(7px);
+        visibility: visible;
+        color: rgb(122, 50, 205);
+    }
+    
+    #overlay{
+        background: rgba(0,0,0,0.4);
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    #header{
+        z-index: 2;
+    }
+}
+#quotes{
+    i{
+        opacity: 0.4;
+    }
+}
+#footer{
+    font-weight: 100;
+}
+
+
+@media(max-width:768px){
+    .navbar{
+        background: #1f1f1f;
+        .nav-link:hover{
+            border: none;
+        }
+    }
+    #showcase{
+        min-height: 500px;
+        font-size: 4rem;
+    }
+}
