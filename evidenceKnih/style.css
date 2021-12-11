@@ -1,0 +1,50 @@
+
+div{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: fit-content;
+    padding:0 20px;
+    margin: 0 auto;
+}
+.zaznam{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 17%;
+}
+
+.ref{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: fit-content;
+    margin: 0 auto;
+    padding: auto;
+}
+a{
+    padding:15px;
+}
+
+.zaznamy{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 50px;
+}
+
+h1{
+    text-align: center;
+    padding-bottom: 20px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: left;
+    align-content: center;
+}
+.popis{
+    text-align: justify;
+}
