@@ -8,7 +8,7 @@
     <title>Vyhledej knihu</title>
 </head>
 <body>
-<h1>Vysledek vyhledávání</h1>  
+<h1>Výsledek vyhledávání</h1>  
 
     <?php
         require "dblogin.php";
@@ -30,7 +30,7 @@
         <td><?php echo htmlspecialchars($radek['jmeno']) ?></td>        
         <td><?php echo htmlspecialchars($radek['prijmeni']) ?></td>       
         <td><?php echo htmlspecialchars($radek['ISBN']) ?></td>
-        <td><?php echo htmlspecialchars($radek['popis']) ?></td>
+        <td class="popis"><?php echo htmlspecialchars($radek['popis']) ?></td>
         </tr>
         </table>
   <?php
