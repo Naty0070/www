@@ -8,19 +8,21 @@
     <title>Vyhledej knihu</title>
 </head>
 <body>
-    <h1>Vyhledej knihu</h1>
-    <form id="vloz" method="POST" action="vyhledejKnihu.php">
-        ISBN: <input type="text" name="isbn"><br>
-        Jméno autora: <input type="text" name="jmeno"><br>
-        Příjmení autora: <input type="text" name="prijmeni"><br>
-        Název knihy: <input type="text" name="nazev"><br>
-        <div class="tlacitka"><input type="submit" value="Hledat"><input type="reset" value="Smazat"></div>
+<div>
+    <form method="POST" action="vyhledejKnihu.php">
+        <h1>Vyhledej knihu</h1>
+        <label for="jmeno"> Jméno autora: </label><input type="text" name="jmeno" id="jmeno"><br>
+        <label for="jmeno"> Příjmení autora: </label> <input type="text" name="prijmeni"  id="prijmeni"><br>
+        <label for="jmeno"> Název knihy: </label>  <input type="text" name="nazev" id="nazev"><br>
+        <label for="jmeno"> ISBN: </label> <input type="text" name="isbn"  id="isbn"><br>
+        <input type="submit" value="vyhledat"  id="vyhledat"><br>
     </form>
-    <ul>
-    <li><a href="prehledKnih.php">Přehled knih</a></li>
-    <li><a href="zadejKnihy.php">Vložit knihu do databáze</a></li>
-    <li><a href="home.html">Home</a></li>
-    </ul>
+</div>
+<div class="ref">
+        <a href="prehledKnih.php">Přehled knih</a>
+        <a href="vyhledejForm.php">Vyhledej Knihu</a>
+        <a href="zadejKnihy.php">Vlož Knihu</a>
+    </div>    
  
 </body>
 </html>

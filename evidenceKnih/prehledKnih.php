@@ -20,24 +20,27 @@ if (!($vysledek = mysqli_query($con, "SELECT ISBN, jmeno, prijmeni, nazev, popis
   die("Nelze provést dotaz.</body></html>");
 }
 ?>
+
 <h1>Přehled knih</h1>  
-<table border="1" ><tr><th>Název</th><th>Jméno</th><th>Příjmení</th><th>ISBN</th><th>Popis</th></tr>
+<div class="zaznamy">
 <?php
 while ($radek = mysqli_fetch_array($vysledek))
 {?>
-        <tr><td><?php echo htmlspecialchars($radek['nazev']) ?></td>
-        <td><?php echo htmlspecialchars($radek['jmeno']) ?></td>        
-        <td><?php echo htmlspecialchars($radek['prijmeni']) ?></td>       
-        <td><?php echo htmlspecialchars($radek['ISBN']) ?></td>
-        <td class="popis"><?php echo htmlspecialchars($radek['popis']) ?></td>
-        </tr>
+    <div class="zaznam">
+      <h3>Název: <?php echo htmlspecialchars($radek['nazev']) ?></h3>
+      <p>Jméno autora: <?php echo htmlspecialchars($radek["jmeno"]) ?></p>
+      <p>Přijmení autora: <?php echo htmlspecialchars($radek["prijmeni"]) ?></p>
+      <p>Popis:</p>
+      <p class="popis"><?php echo htmlspecialchars($radek["popis"]) ?></p>
+      <p>ISBN: <?php echo htmlspecialchars($radek["ISBN"]) ?></p>
+      </div>
 <?php } ?>
-</table>
-<ul>
-  <li><a href="vyhledejForm.php">Vyhledat knihu</a></li>
-    <li><a href="zadejKnihy.php">Vložit knihu do databáze</a></li>
-    <li><a href="home.html">Home</a></li>
-  </ul>
+</div>
+<div class="ref">
+    <a href="prehledKnih.php">Přehled knih</a>
+    <a href="vyhledejForm.php">Vyhledej Knihu</a>
+    <a href="zadejKnihy.php">Vlož Knihu</a>
+</div>
 
 <?php
 mysqli_free_result($vysledek);
