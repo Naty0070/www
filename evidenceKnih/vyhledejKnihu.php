@@ -8,6 +8,8 @@
     <title>Vyhledej knihu</title>
 </head>
 <body>
+<h1>Vysledek vyhledávání</h1>  
+
     <?php
         require "dblogin.php";
 
@@ -23,27 +25,25 @@
        echo "nastala chyba nelze provest prikaz";
    };
    if($radek=mysqli_fetch_array($vysledek)){?>
-   <div>
-    <form>
-        <h1>Kniha</h1>  
-        <h3><?php echo htmlspecialchars($radek['nazev']) ?></h3>
-        <p>Jméno autora: <?php echo htmlspecialchars($radek["jmeno"]) ?></p>
-        <p>Přijmení autora: <?php echo htmlspecialchars($radek["prijmeni"]) ?></p>
-        <p>Popis: </p><p class="popis"><?php echo htmlspecialchars($radek["popis"]) ?></p>
-        <p>ISBN: <?php echo htmlspecialchars($radek["ISBN"]) ?></p>
-     </form>
-     </div>
-    <div class="ref">
-    <a href="prehledKnih.php">Přehled knih</a>
-    <a href="vyhledejForm.php">Vyhledej Knihu</a>
-    <a href="zadejKnihy.php">Vlož Knihu</a>
-    </div>
-
-  <?php }
+        <table border="1" ><tr><th>Název</th><th>Jméno</th><th>Příjmení</th><th>ISBN</th><th>Popis</th></tr>
+        <tr><td><?php echo htmlspecialchars($radek['nazev']) ?></td>
+        <td><?php echo htmlspecialchars($radek['jmeno']) ?></td>        
+        <td><?php echo htmlspecialchars($radek['prijmeni']) ?></td>       
+        <td><?php echo htmlspecialchars($radek['ISBN']) ?></td>
+        <td><?php echo htmlspecialchars($radek['popis']) ?></td>
+        </tr>
+        </table>
+  <?php
+   }
   else
     echo "Takovou knihu nemáme v databázi, jdi zpět!";
    mysqli_free_result($vysledek);
    mysqli_close($con);
     ?>
+     <ul>
+    <li><a href="prehledKnih.php">Přehled knih</a></li>
+    <li><a href="zadejKnihy.php">Vložit knihu do databáze</a></li>
+    <li><a href="home.html">Home</a></li>
+    </ul>   
 </body>
 </html>

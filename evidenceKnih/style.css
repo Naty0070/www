@@ -1,50 +1,43 @@
-
-div{
+body{
+    position: relative;
+    width: 100vh;
+    height: 100vh;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    width: 20%;
-    height: fit-content;
-    padding:0 20px;
+}
+#home{
     margin: 0 auto;
-}
-.zaznam{
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    width: 17%;
+    height: 40vh;
+    width: 50vh;
 }
 
-.ref{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    width: fit-content;
-    margin: 0 auto;
-    padding: auto;
-}
-a{
-    padding:15px;
-}
-
-.zaznamy{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    width: 100%;
-    padding-left: 50px;
-}
-
-h1{
-    text-align: center;
-    padding-bottom: 20px;
-}
-form{
+#vloz{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: left;
     align-content: center;
+    width: 100vh;
 }
 .popis{
     text-align: justify;
 }
+h1{
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+ul{
+    position: relative;
+    margin: 30px auto;
+}
+
+.tlacitka input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50%;
+}
+td, th{
+    padding:5px;}
