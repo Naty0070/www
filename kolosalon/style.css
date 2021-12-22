@@ -1,0 +1,25 @@
+body{
+    background-image: url("img/kolo.jpg");
+    background-position: center ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    font-family: 'Comfortaa', cursive;
+    font-size: large;
+}
+#cover{
+   background-color: rgba(12, 12, 12, 0.603);
+   width: 90%;
+   height: 100%;
+   margin: 0 auto;
+}
+#info{
+    background-color: rgba(124, 119, 119, 0.445);
+    width: 80%;
+}
+.card{
+    background-color: rgba(124, 119, 119, 0.445);
+}
