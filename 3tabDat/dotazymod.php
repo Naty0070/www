@@ -22,7 +22,7 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT count(DATOD) AS pocetakci
+                if (!($vysledek = mysqli_query($con, "SELECT count(DATOD) AS POCETAKCI
                 FROM KALENDAR
                 WHERE DATOD>=curdate() And year(DATOD)=year(curdate())")))
                 {
@@ -35,7 +35,7 @@
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                         <tr>
-                            <td><?php echo htmlspecialchars($radek['pocetakci']) ?></td>
+                            <td><?php echo htmlspecialchars($radek['POCETAKCI']) ?></td>
                         </tr>        
                 <?php } ?>
                 </table>
@@ -57,9 +57,9 @@
                  die("Nelze se připojit k databázovému serveru!</body></html>");
                  }
                  mysqli_query($con,"SET NAMES 'utf8'");
-                 if (!($vysledek = mysqli_query($con, "SELECT count(DATOD) AS pocetakciFr
-                 FROM KALENDAR,navrhari
-                 WHERE DATOD>=curdate() And year(DATOD)=year(curdate()) and zeme='FR'")))
+                 if (!($vysledek = mysqli_query($con, "SELECT count(DATOD) AS POCETAKCIFR
+                 FROM KALENDAR,NAVRHARI
+                 WHERE DATOD>=curdate() And year(DATOD)=year(curdate()) and ZEME='FR'")))
                  {
                  die("Nelze provést dotaz.</body></html>");
                  }
@@ -70,7 +70,7 @@
                  while ($radek = mysqli_fetch_array($vysledek))
                  {?>
                          <tr>
-                             <td><?php echo htmlspecialchars($radek['pocetakciFr']) ?></td>
+                             <td><?php echo htmlspecialchars($radek['POCETAKCIFR']) ?></td>
                          </tr>        
                  <?php } ?>
                  </table>
@@ -92,20 +92,20 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT sum(((date(datdo)-date(datod)+1)*plat)-poplatek) AS Vydelek
+                if (!($vysledek = mysqli_query($con, "SELECT sum((DATEDIFF(date(DATDO),date(DATOD)+1)*PLAT)-POPLATEK) AS VYDELEK
                 FROM KALENDAR AS A, AGENTURY AS B, NAVRHARI AS C
-                WHERE agentura=B.kod And navrhar=C.kod And datod>'2020-01-31' And datod<'2020-03-01'")))
+                WHERE A.AGENTURA=B.KOD And A.NAVRHAR=C.KOD And DATOD>'2020-01-31' And DATOD<'2020-03-01'")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
                 ?>
-                <table border="1" style="width: 25%" class="ml-3 mt-3">
+                <table border="1" style="width: 20%" class="ml-3 mt-3">
                 <tr><th>Výdělek</th></tr>
                 <?php
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                     <tr>
-                        <td><?php echo htmlspecialchars($radek['Vydelek']) ?> ,-Kč</td>
+                        <td><?php echo htmlspecialchars($radek['VYDELEK']) ?> ,-Kč</td>
                     </tr>        
                 <?php } ?>
                 </table>
@@ -118,7 +118,7 @@
     </div>
     <div class="p-3">
         <form action="dotazymod.php" method="POST">
-            <label for="d4" class="col-8">Od kterého návrháře byla nejvetší výplata?</label>
+            <label for="d4" class="col-8">Od kterého návrháře byla největší výplata?</label>
             <input type="submit" id="d4" name="d4" class="btn btn-dark rounded col-3" value="Odpověz">
             <?php if (isset($_POST['d4'])) {
                 require "dblogin.php";      
@@ -127,20 +127,29 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT jmeno AS NejlepsiNavrhar
-                FROM OdNavrharu
-                WHERE vyplata=(select max(vyplata) from OdNavrharu)")))
+                if (!($vysledek = mysqli_query($con, "SELECT JMENO, VYDELEK
+                FROM (SELECT JMENO, SUM((datediff(date(DATDO),date(DATOD))+1)*PLAT) AS VYDELEK
+                            FROM KALENDAR, NAVRHARI
+                            WHERE KOD=NAVRHAR
+                            GROUP BY JMENO, PLAT)as A
+                WHERE VYDELEK IN 
+                    (SELECT MAX(VYDELEK)
+                        FROM (SELECT JMENO, SUM((datediff(date(DATDO),date(DATOD))+1)*PLAT) AS VYDELEK
+                            FROM KALENDAR, NAVRHARI
+                            WHERE KOD=NAVRHAR
+                            GROUP BY JMENO, PLAT) as B)")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
                 ?>
-                <table border="1" class="ml-3" style="width: 30%;">
-                <tr><th>Nejlepší návrhář</th></tr>
+                <table border="1" class="ml-3" style="width: 45%;">
+                <tr><th>Nejlepší návrhář</th><th>Výdělek</th></tr>
                 <?php
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                     <tr>
-                        <td><?php echo htmlspecialchars($radek['NejlepsiNavrhar']) ?></td>
+                        <td><?php echo htmlspecialchars($radek['JMENO']) ?></td>
+                        <td><?php echo htmlspecialchars($radek['VYDELEK']) ?> ,-Kč</td>
                     </tr>        
                 <?php } ?>
                 </table>
@@ -162,16 +171,16 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT date(DATOD) as DATOD, date(DATDO) as DATDO, NAZEV, JMENO, (((date(DATDO)-date(DATOD)+1)*PLAT)-POPLATEK) AS VYDELEK
+                if (!($vysledek = mysqli_query($con, "SELECT date(DATOD) as DATOD, date(DATDO) as DATDO, NAZEV, JMENO, (((DATEDIFF(date(DATDO),date(DATOD))+1)*PLAT)-POPLATEK) AS VYDELEK
                 FROM AGENTURY, KALENDAR, NAVRHARI
                 WHERE KALENDAR.NAVRHAR=NAVRHARI.KOD AND AGENTURY.KOD=KALENDAR.AGENTURA
-                AND (((DATDO-DATOD+1)*PLAT)-POPLATEK)<0")))
+                AND (((DATEDIFF(date(DATDO),date(DATOD))+1)*PLAT)-POPLATEK)<0")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
                 ?>
                 <table border="1" class="ml-3" style="width: 80%;">
-                <tr><th>DatOd</th><th>DatDo</th><th>Nazev</th><th>Jméno</th><th>Výdělek</th></tr>
+                <tr><th>DatOd</th><th>DatDo</th><th>Název</th><th>Jméno</th><th>Výdělek</th></tr>
                 <?php
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>

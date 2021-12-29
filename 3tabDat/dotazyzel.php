@@ -22,11 +22,11 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT zbozi, nazev, sum(kusy) AS pocet
+                if (!($vysledek = mysqli_query($con, "SELECT ZBOZI, NAZEV, sum(KUSY) AS POCET
                 FROM PRODEJ, SKLAD
-                WHERE zbozi=kod and datum > '2020-01-31' And datum<'2020-03-01'
-                GROUP BY zbozi, nazev
-                ORDER BY zbozi")))
+                WHERE ZBOZI=KOD and DATUM > '2020-01-31' And DATUM<'2020-03-01'
+                GROUP BY ZBOZI, NAZEV
+                ORDER BY ZBOZI")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
@@ -37,9 +37,9 @@
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                         <tr>
-                            <td><?php echo htmlspecialchars($radek['zbozi']) ?></td>
-                            <td><?php echo htmlspecialchars($radek['nazev']) ?></td>
-                            <td><?php echo htmlspecialchars($radek['pocet']) ?></td>
+                            <td><?php echo htmlspecialchars($radek['ZBOZI']) ?></td>
+                            <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>
+                            <td><?php echo htmlspecialchars($radek['POCET']) ?></td>
                         </tr>        
                 <?php } ?>
                 </table>
@@ -61,9 +61,9 @@
             die("Nelze se připojit k databázovému serveru!</body></html>");
             }
             mysqli_query($con,"SET NAMES 'utf8'");
-            if (!($vysledek = mysqli_query($con, "SELECT sum((kusy*cena)/10) AS vydelek
+            if (!($vysledek = mysqli_query($con, "SELECT sum((KUSY*CENA)/10) AS VYDELEK
             FROM PRODEJ, SKLAD
-            WHERE zbozi=kod and datum > '2020-01-31' And datum< '2020-03-01'")))
+            WHERE ZBOZI=KOD and DATUM > '2020-01-31' And DATUM< '2020-03-01'")))
             {
             die("Nelze provést dotaz.</body></html>");
             }
@@ -72,7 +72,7 @@
             <?php
             while ($radek = mysqli_fetch_array($vysledek))
             {?>
-                    <tr><td><?php echo htmlspecialchars($radek['vydelek']) ?> ,- Kč</td></tr>        
+                    <tr><td><?php echo htmlspecialchars($radek['VYDELEK']) ?> ,- Kč</td></tr>        
             <?php } ?>
             </table>
         <?php
@@ -93,9 +93,9 @@
             die("Nelze se připojit k databázovému serveru!</body></html>");
             }
             mysqli_query($con,"SET NAMES 'utf8'");
-            if (!($vysledek = mysqli_query($con, "SELECT sum(B.dodano) AS DovezenoZPlzne
+            if (!($vysledek = mysqli_query($con, "SELECT sum(B.DODANO) AS DOVEZENOZPLZNE
             FROM SKLAD AS B, DODAVATELE AS C
-            WHERE B.dodavatel=C.kod and C.sidlo='Plzeň'")))
+            WHERE B.DODAVATEL=C.KOD and C.SIDLO='Plzeň'")))
             {
             die("Nelze provést dotaz.</body></html>");
             }
@@ -106,7 +106,7 @@
             while ($radek = mysqli_fetch_array($vysledek))
             {?>
                 <tr>
-                    <td><?php echo htmlspecialchars($radek['DovezenoZPlzne']) ?></td>
+                    <td><?php echo htmlspecialchars($radek['DOVEZENOZPLZNE']) ?></td>
                 </tr>        
             <?php } ?>
             </table>
@@ -128,11 +128,11 @@
             die("Nelze se připojit k databázovému serveru!</body></html>");
             }
             mysqli_query($con,"SET NAMES 'utf8'");
-            if (!($vysledek = mysqli_query($con, "SELECT nazev, dodano-sum(kusy) AS ZbytekNaSklade
+            if (!($vysledek = mysqli_query($con, "SELECT NAZEV, DODANO-sum(KUSY) AS ZBYTEKNASKLADE
             FROM PRODEJ, SKLAD
-            WHERE zbozi=kod
-            GROUP BY nazev, dodano
-            HAVING dodano-sum(kusy)<5;")))
+            WHERE ZBOZI=KOD
+            GROUP BY NAZEV, DODANO
+            HAVING DODANO-sum(KUSY)<5;")))
             {
             die("Nelze provést dotaz.</body></html>");
             }
@@ -143,8 +143,8 @@
             while ($radek = mysqli_fetch_array($vysledek))
             {?>
                 <tr>
-                    <td><?php echo htmlspecialchars($radek['nazev']) ?></td>
-                    <td><?php echo htmlspecialchars($radek['ZbytekNaSklade']) ?></td>
+                    <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>
+                    <td><?php echo htmlspecialchars($radek['ZBYTEKNASKLADE']) ?></td>
                 </tr>        
             <?php } ?>
             </table>

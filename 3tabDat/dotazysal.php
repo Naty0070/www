@@ -22,8 +22,8 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT nazev, count(Nazev) AS pocet
-                FROM PRODEJ LEFT JOIN MODELY ON PRODEJ.MODEL=MODELY.KOD
+                if (!($vysledek = mysqli_query($con, "SELECT NAZEV, count(NAZEV) AS POCET
+                FROM PRODEJE LEFT JOIN MODELY ON PRODEJE.MODEL=MODELY.KOD
                 WHERE DATUM> '2019-01-31' AND DATUM<'2019-03-01'
                 GROUP BY NAZEV;")))
                 {
@@ -36,8 +36,8 @@
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                         <tr>
-                            <td><?php echo htmlspecialchars($radek['nazev']) ?></td>
-                            <td><?php echo htmlspecialchars($radek['pocet']) ?></td>
+                            <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>
+                            <td><?php echo htmlspecialchars($radek['POCET']) ?></td>
                         </tr>        
                 <?php } ?>
                 </table>
@@ -59,9 +59,9 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT SUM(PRACNOST*300) AS vydelek
-                FROM PRODEJ, MODELY
-                WHERE model=kod and datum > '2020-01-31' And datum< '2020-03-01'")))
+                if (!($vysledek = mysqli_query($con, "SELECT SUM(PRACNOST*300) AS VYDELEK
+                FROM PRODEJE, MODELY
+                WHERE MODEL=KOD and DATUM > '2020-01-31' And DATUM< '2020-03-01'")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
@@ -70,7 +70,7 @@
                 <?php
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
-                        <tr><td><?php echo htmlspecialchars($radek['vydelek']) ?> ,- Kč</td></tr>        
+                        <tr><td><?php echo htmlspecialchars($radek['VYDELEK']) ?> ,- Kč</td></tr>        
                 <?php } ?>
                 </table>
             <?php
@@ -91,9 +91,9 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT C.nazev, Round(Sum(B.SPOTREBA),2) AS spotreba
-                FROM PRODEJ AS A, MODELY AS B, LATKY AS C
-                WHERE (((A.MODEL)=B.kod) And ((A.LATKA)=C.kod))
+                if (!($vysledek = mysqli_query($con, "SELECT C.NAZEV, Round(Sum(B.SPOTREBA),2) AS SPOTREBA
+                FROM PRODEJE AS A, MODELY AS B, LATKY AS C
+                WHERE (((A.MODEL)=B.KOD) And ((A.LATKA)=C.KOD))
                 GROUP BY C.NAZEV;")))
                 {
                 die("Nelze provést dotaz.</body></html>");
@@ -105,8 +105,8 @@
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                     <tr>
-                        <td><?php echo htmlspecialchars($radek['nazev']) ?></td>
-                        <td><?php echo htmlspecialchars($radek['spotreba']) ?> m</td>
+                        <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>
+                        <td><?php echo htmlspecialchars($radek['SPOTREBA']) ?> m</td>
                     </tr>        
                 <?php } ?>
                 </table>
@@ -128,9 +128,16 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT nazev
-                FROM TABULKA_PRODEJU
-                WHERE POCET IN(SELECT MAX(POCET) FROM TABULKA_PRODEJU);")))
+                if (!($vysledek = mysqli_query($con, "SELECT NAZEV FROM(
+                    SELECT NAZEV, count(MODEL) AS POCET
+                    FROM MODELY, PRODEJE
+                    WHERE KOD=MODEL
+                    GROUP BY NAZEV) as A
+                    WHERE POCET =(SELECT max(POCET) FROM(
+                    SELECT NAZEV, count(MODEL) AS POCET
+                    FROM MODELY, PRODEJE
+                    WHERE KOD=MODEL
+                    GROUP BY NAZEV) as B)")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
@@ -141,7 +148,7 @@
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                     <tr>
-                        <td><?php echo htmlspecialchars($radek['nazev']) ?></td>
+                        <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>
                     </tr>        
                 <?php } ?>
                 </table>
@@ -163,9 +170,9 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT nazev
+                if (!($vysledek = mysqli_query($con, "SELECT NAZEV
                 FROM MODELY
-                WHERE KOD NOT IN( SELECT MODEL FROM PRODEJ)")))
+                WHERE KOD NOT IN( SELECT MODEL FROM PRODEJE)")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
@@ -176,7 +183,7 @@
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
                     <tr>
-                        <td><?php echo htmlspecialchars($radek['nazev']) ?></td>
+                        <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>
                     </tr>        
                 <?php } ?>
                 </table>

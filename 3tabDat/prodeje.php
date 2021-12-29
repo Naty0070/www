@@ -15,7 +15,7 @@ if (!($con = mysqli_connect($server, $user, $pass, $db)))
   die("Nelze se připojit k databázovému serveru!</body></html>");
 }
 mysqli_query($con,"SET NAMES 'utf8'");
-if (!($vysledek = mysqli_query($con, "SELECT date(datum) as datum, zbozi, kusy FROM prodej")))
+if (!($vysledek = mysqli_query($con, "SELECT date(DATUM) as DATUM, ZBOZI, KUSY FROM PRODEJ")))
 {
   die("Nelze provést dotaz.</body></html>");
 }
@@ -25,9 +25,9 @@ if (!($vysledek = mysqli_query($con, "SELECT date(datum) as datum, zbozi, kusy F
 <?php
 while ($radek = mysqli_fetch_array($vysledek))
 {?>
-        <tr><td><?php echo htmlspecialchars($radek['datum']) ?></td>
-        <td><?php echo htmlspecialchars($radek['zbozi']) ?></td>        
-        <td><?php echo htmlspecialchars($radek['kusy']) ?></td></tr>             
+        <tr><td><?php echo htmlspecialchars($radek['DATUM']) ?></td>
+        <td><?php echo htmlspecialchars($radek['ZBOZI']) ?></td>        
+        <td><?php echo htmlspecialchars($radek['KUSY']) ?></td></tr>             
 <?php } ?>
 </table>
 <ul>

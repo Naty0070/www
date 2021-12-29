@@ -15,7 +15,7 @@ if (!($con = mysqli_connect($server, $user, $pass, $db)))
   die("Nelze se připojit k databázovému serveru!</body></html>");
 }
 mysqli_query($con,"SET NAMES 'utf8'");
-if (!($vysledek = mysqli_query($con, "SELECT kod, nazev, pracnost, spotreba FROM modely")))
+if (!($vysledek = mysqli_query($con, "SELECT KOD, NAZEV, PRACNOST, SPOTREBA FROM MODELY")))
 {
   die("Nelze provést dotaz.</body></html>");
 }
@@ -25,10 +25,10 @@ if (!($vysledek = mysqli_query($con, "SELECT kod, nazev, pracnost, spotreba FROM
 <?php
 while ($radek = mysqli_fetch_array($vysledek))
 {?>
-        <tr><td><?php echo htmlspecialchars($radek['kod']) ?></td>
-        <td><?php echo htmlspecialchars($radek['nazev']) ?></td>        
-        <td><?php echo htmlspecialchars($radek['pracnost']) ?> hod.</td>  
-        <td><?php echo htmlspecialchars($radek['spotreba']) ?> m</td></tr>             
+        <tr><td><?php echo htmlspecialchars($radek['KOD']) ?></td>
+        <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>        
+        <td><?php echo htmlspecialchars($radek['PRACNOST']) ?> hod.</td>  
+        <td><?php echo htmlspecialchars($radek['SPOTREBA']) ?> m</td></tr>             
 <?php } ?>
 </table>
 <ul>

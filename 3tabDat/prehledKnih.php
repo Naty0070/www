@@ -15,7 +15,7 @@ if (!($con = mysqli_connect($server, $user, $pass, $db)))
   die("Nelze se připojit k databázovému serveru!</body></html>");
 }
 mysqli_query($con,"SET NAMES 'utf8'");
-if (!($vysledek = mysqli_query($con, "SELECT autor, nazev, obchod, cena, nakladatel,vydavatel,rok FROM knihy2")))
+if (!($vysledek = mysqli_query($con, "SELECT AUTOR, NAZEV, OBCHOD, CENA, NAKLADATEL,VYDAVATEL,ROK FROM KNIHY2")))
 {
   die("Nelze provést dotaz.</body></html>");
 }
@@ -25,13 +25,13 @@ if (!($vysledek = mysqli_query($con, "SELECT autor, nazev, obchod, cena, naklada
 <?php
 while ($radek = mysqli_fetch_array($vysledek))
 {?>
-        <tr><td><?php echo htmlspecialchars($radek['autor']) ?></td>
-        <td><?php echo htmlspecialchars($radek['nazev']) ?></td>        
-        <td><?php echo htmlspecialchars($radek['obchod']) ?></td>  
-        <td><?php echo htmlspecialchars($radek['cena']) ?></td>       
-        <td><?php echo htmlspecialchars($radek['nakladatel']) ?></td>            
-        <td><?php echo htmlspecialchars($radek['vydavatel']) ?></td>
-        <td><?php echo htmlspecialchars($radek['rok']) ?></td> </tr>     
+        <tr><td><?php echo htmlspecialchars($radek['AUTOR']) ?></td>
+        <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>        
+        <td><?php echo htmlspecialchars($radek['OBCHOD']) ?></td>  
+        <td><?php echo htmlspecialchars($radek['CENA']) ?></td>       
+        <td><?php echo htmlspecialchars($radek['NAKLADATEL']) ?></td>            
+        <td><?php echo htmlspecialchars($radek['VYDAVATEL']) ?></td>
+        <td><?php echo htmlspecialchars($radek['ROK']) ?></td> </tr>     
 
         
 <?php } ?>

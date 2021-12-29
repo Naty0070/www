@@ -15,7 +15,7 @@ if (!($con = mysqli_connect($server, $user, $pass, $db)))
   die("Nelze se připojit k databázovému serveru!</body></html>");
 }
 mysqli_query($con,"SET NAMES 'utf8'");
-if (!($vysledek = mysqli_query($con, "SELECT date(datod) as datod, date(datdo) as datdo, navrhar, agentura FROM kalendar")))
+if (!($vysledek = mysqli_query($con, "SELECT date(DATOD) as DATOD, date(DATDO) as DATDO, NAVRHAR, AGENTURA FROM KALENDAR")))
 {
   die("Nelze provést dotaz.</body></html>");
 }
@@ -25,10 +25,10 @@ if (!($vysledek = mysqli_query($con, "SELECT date(datod) as datod, date(datdo) a
 <?php
 while ($radek = mysqli_fetch_array($vysledek))
 {?>
-        <tr><td><?php echo htmlspecialchars($radek['datod']) ?></td>
-        <td><?php echo htmlspecialchars($radek['datdo']) ?></td>  
-        <td><?php echo htmlspecialchars($radek['navrhar']) ?></td>        
-        <td><?php echo htmlspecialchars($radek['agentura']) ?></td></tr>             
+        <tr><td><?php echo htmlspecialchars($radek['DATOD']) ?></td>
+        <td><?php echo htmlspecialchars($radek['DATDO']) ?></td>  
+        <td><?php echo htmlspecialchars($radek['NAVRHAR']) ?></td>        
+        <td><?php echo htmlspecialchars($radek['AGENTURA']) ?></td></tr>             
 <?php } ?>
 </table>
 <ul>
