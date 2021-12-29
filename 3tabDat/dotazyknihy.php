@@ -22,7 +22,7 @@
                 die("Nelze se připojit k databázovému serveru!</body></html>");
                 }
                 mysqli_query($con,"SET NAMES 'utf8'");
-                if (!($vysledek = mysqli_query($con, "SELECT sum(cena) AS Celkem FROM knihy2")))
+                if (!($vysledek = mysqli_query($con, "SELECT sum(CENA) AS CELKEM FROM KNIHY2")))
                 {
                 die("Nelze provést dotaz.</body></html>");
                 }
@@ -31,7 +31,7 @@
                 <?php
                 while ($radek = mysqli_fetch_array($vysledek))
                 {?>
-                        <tr><td><?php echo htmlspecialchars($radek['Celkem']) ?> ,- Kč</td></tr>        
+                        <tr><td><?php echo htmlspecialchars($radek['CELKEM']) ?> ,- Kč</td></tr>        
                 <?php } ?>
                 </table>
                 <?php
@@ -52,9 +52,9 @@
             die("Nelze se připojit k databázovému serveru!</body></html>");
             }
             mysqli_query($con,"SET NAMES 'utf8'");
-            if (!($vysledek = mysqli_query($con, "SELECT sum(cena) AS CelkemPlzen
-            FROM knihy2, knihkupectvi
-            WHERE mesto='plzeň' and kod=obchod")))
+            if (!($vysledek = mysqli_query($con, "SELECT sum(CENA) AS CELKEMPLZEN
+            FROM KNIHY2, KNIHKUPECTVI
+            WHERE MESTO='Plzeň' and KOD=OBCHOD")))
             {
             die("Nelze provést dotaz.</body></html>");
             }
@@ -63,7 +63,7 @@
             <?php
             while ($radek = mysqli_fetch_array($vysledek))
             {?>
-                    <tr><td><?php echo htmlspecialchars($radek['CelkemPlzen']) ?> ,- Kč</td></tr>        
+                    <tr><td><?php echo htmlspecialchars($radek['CELKEMPLZEN']) ?> ,- Kč</td></tr>        
             <?php } ?>
             </table>
         <?php
@@ -84,9 +84,9 @@
             die("Nelze se připojit k databázovému serveru!</body></html>");
             }
             mysqli_query($con,"SET NAMES 'utf8'");
-            if (!($vysledek = mysqli_query($con, "SELECT autor, nazev, rok, cena
+            if (!($vysledek = mysqli_query($con, "SELECT AUTOR, NAZEV, ROK, CENA
             FROM KNIHY2
-            WHERE autor in (select kod from autori where(select min(narozen) from autori where zemrel is null and kod=autor))
+            WHERE AUTOR in (select KOD from AUTORI where(select min(NAROZEN) from AUTORI where ZEMREL is null and KOD=AUTOR))
             ")))
             {
             die("Nelze provést dotaz.</body></html>");
@@ -98,10 +98,10 @@
             while ($radek = mysqli_fetch_array($vysledek))
             {?>
                 <tr>
-                    <td><?php echo htmlspecialchars($radek['autor']) ?></td>
-                    <td><?php echo htmlspecialchars($radek['nazev']) ?></td>
-                    <td><?php echo htmlspecialchars($radek['rok']) ?></td>
-                    <td><?php echo htmlspecialchars($radek['cena']) ?> ,- Kč</td>
+                    <td><?php echo htmlspecialchars($radek['AUTOR']) ?></td>
+                    <td><?php echo htmlspecialchars($radek['NAZEV']) ?></td>
+                    <td><?php echo htmlspecialchars($radek['ROK']) ?></td>
+                    <td><?php echo htmlspecialchars($radek['CENA']) ?> ,- Kč</td>
                 </tr>        
             <?php } ?>
             </table>
@@ -123,9 +123,9 @@
             die("Nelze se připojit k databázovému serveru!</body></html>");
             }
             mysqli_query($con,"SET NAMES 'utf8'");
-            if (!($vysledek = mysqli_query($con, "select distinct mesto
+            if (!($vysledek = mysqli_query($con, "select distinct MESTO
             from KNIHKUPECTVI
-            where kod in (select obchod from knihy2 where autor in (select kod from autori where jazyk='A'))
+            where KOD in (select OBCHOD from KNIHY2 where AUTOR in (select KOD from AUTORI where JAZYK='A'))
             ")))
             {
             die("Nelze provést dotaz.</body></html>");
@@ -136,7 +136,7 @@
             <?php
             while ($radek = mysqli_fetch_array($vysledek))
             {?>
-                    <tr><td><?php echo htmlspecialchars($radek['mesto']) ?></td></tr>        
+                    <tr><td><?php echo htmlspecialchars($radek['MESTO']) ?></td></tr>        
             <?php } ?>
             </table>
         <?php
