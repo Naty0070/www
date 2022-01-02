@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Kolosalon</title>
     
@@ -23,8 +24,10 @@
             <div class="card-body text-light">
               <h5 class="card-title">Dětské kolo</h5>
               <p class="card-text">K zapůjčení za 200 Kč/den</p>
-              <input type="checkbox" value="200" id="chb1" class="druh form-check-input" name="druhy[]">
-              <input  class="poc rounded-3" type="number" name="pocet[]" value="1" min="1" style="width: 50px;">
+              <form action="" name="f1">
+              <input type="checkbox" value="200" id="chb1" class="form-check-input">
+              <input  class="poc rounded-3" type="number" value="1" min="1" style="width: 50px;">
+            </form>
             </div>
           </div>
           <div class="card col-sm-11 col-md-5 col-lg-3 m-auto mt-4 p-0" style="width: 19rem;">
@@ -32,9 +35,9 @@
           <div class="card-body text-light">
             <h5 class="card-title">Horské kolo</h5>
             <p class="card-text">K zapůjčení za 500 Kč/den</p>
-            <form action="">
-            <input type="checkbox" value="500" id="chb2" class="druh form-check-input" name="druhy[]"> 
-            <input class="poc rounded-3" type="number" name="pocet[]" value="1" min="1" style="width: 50px;">
+            <form action="" name="f2">
+            <input type="checkbox" value="500" id="chb2" class="form-check-input"> 
+            <input class="poc rounded-3" type="number" value="1" min="1" style="width: 50px;">
           </form>
           </div>
           </div>
@@ -43,8 +46,10 @@
             <div class="card-body text-light">
               <h5 class="card-title">Silniční kolo</h5>
               <p class="card-text">K zapůjčení za 1 500 Kč/den</p>
-              <input type="checkbox" value="1500" id="chb3" class="druh form-check-input" name="druhy[]"> 
-              <input class="poc rounded-3" type="number"name="pocet[]" value="1" min="1" style="width: 50px;">
+              <form action="" name="f3">
+              <input type="checkbox" value="1500" id="chb3" class="form-check-input"> 
+              <input class="poc rounded-3" type="number" value="1" min="1" style="width: 50px;">
+            </form>
             </div>
           </div>
           <div class="card col-sm-11 col-md-5 col-lg-3 m-auto mt-4 p-0" style="width: 19rem;">
@@ -52,8 +57,10 @@
             <div class="card-body text-light">
               <h5 class="card-title">Gravel</h5>
               <p class="card-text">K zapůjčení za 2 500 Kč/den</p>
-              <input type="checkbox" value="2500" id="chb4" class="druh form-check-input" name="druhy[]">
-              <input  class="poc rounded-3" type="number"name="pocet[]" value="1" min="1" style="width: 50px;"><br>
+              <form action="" name="f4">
+              <input type="checkbox" value="2500" id="chb4" class="form-check-input" >
+              <input  class="poc rounded-3" type="number" value="1" min="1" style="width: 50px;"><br>
+            </form>
             </div>
           </div>
         </div>
@@ -62,47 +69,52 @@
         <div class="d-flex flex-row flex-wrap align-content-between">
             <div class="m-3">
                 <h4>Doba zapůjčení: </h4>
-                <select id="dobaZapujceni" size="3" onclick="" name="vyber" style="width: 200px;" class="form-select" aria-label="Default select example">
+                <form action="" name="f5">
+                <select id="dobaZapujceni" size="3" onclick="" name="dobaZapujceni" style="width: 200px;" class="form-select" aria-label="Doba zapujceni">
                     <option value="5" selected>5 dní</option>
                     <option value="7">7 dní</option>
                     <option value="14">14 dní</option>
                     <option value="31">31 dní</option>
                 </select>
+            </form>
             </div>
             <div class="m-3">
                 <h4>Je třeba cyklonosič? </h4>
-                <form action="" name="f2" onclick="">
+                <form action="" name="f6">
                     <input type="radio" value="5" name="rad" class="nosic" id="rad1"> <label for="rad1">cyklonosič střešní (+ 5 procent z celkové ceny zápůjčky navíc)</label><br>
                     <input type="radio" value="10" name="rad" class="nosic" id="rad2"> <label for="rad2">cyklonosič na tažné zařízení (+ 10 procent z celkové ceny zápůjčky navíc)</label><br>
                 <input type="radio" value="0" name="rad" class="nosic" id="rad3" checked> <label for="rad3">není třeba cyklonosič</label><br>
                 </form>
             </div>
             <div class="m-3">
-                <form action="" name="f3"> 
+                <form action="" name="f7"> 
                    <label for="predstava">Jakou cenu si představujete?</label>
-                   <input type="text" id="predstava" value="0"><br>
-                    <p id="realita"></p> 
+                   <input type="text" id="predstava" name="predstava" value="0"><br>
                  </form>
+                 <p id="realita"></p> 
             </div>
             <div class="m-3">
-              <form action="" name="f3">
-                   <button id="celkovaCena" type="button" class="btn btn-info">Zobraz Cenu</button>
-                   <label class="m-1" id="cena"></label>
+              <form action="" name="f8">
+                   <button id="celkovaCena" type="button" onclick="spocitejCenuKol()" class="btn btn-info">Zobraz Cenu</button>
+                   <label for="celkovaCena" class="m-1" id="cena"></label>
                </form>
           </div>
             <div class="m-3">
-                <form action="" name="f4">
-                    Zadej email <input type="email" id="mail" required>
-                    <input type="button" value="Odeslat" id="odesli" class="btn btn-info my-2">
-                    <p id="odeslano"></p>
+                <form name="f9">
+                    Zadej email <input type="email" name="mail" required>
+                    <input type="submit" value="Odeslat" id="odesli" onclick="Odesli()" class="btn btn-info my-2">
                  </form>
+                 <p id="odeslano"></p>
             </div>
         </div>
     </div>
     </div>
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script src="script.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
 </body>
 </html>

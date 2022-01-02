@@ -1,86 +1,50 @@
-$(document).ready(function(){
-    let cenakolo = 0; let pocet = 1; let dny=5; let cyklonosic=0; let prubeznaCena=0; let procenta=0; let hlaska="";
-    let druhArray=document.getElementsByName('druhy[]');
-    let pocetArray=document.getElementsByName('pocet[]');
+let cenakolo = 0; let pocet = 1; let x=0; let dny=0; let cyklonosic=0; let prubeznaCena=0;
+function spocitejCenuKol() {
+    cenakolo = 0;
 
-    
-    $('.druh').click(function(){
-       spocitej();
-       predstavaUzivatel();
-    });
-    $('.poc').change(function(){
-       spocitej();
-       predstavaUzivatel();
-
-    });
-    $('#dobaZapujceni').change(function(){
-        dny=parseInt(this.value);
-        spocitej();
-        predstavaUzivatel();
-     });
-
-    
-     $('.nosic').click(function(){
-        spocitej();
-        radiob();
-       
-     });
-
-     $('#predstava').change(function(){
-        spocitej();
-        predstavaUzivatel();
-     });
-    
-
-    $('#celkovaCena').click(function(){
-       spocitej(); 
-       radiob();
-        predstavaUzivatel();
-        $('#cena').text("Celková cena "+cenakolo+" ,- Kč");
-        $("#realita").text(hlaska);
-
-    });
-
-    $('#odesli').click(function(){
-        let zadane=$('#mail').val();
-        if(zadane.includes('@')){
-            $('#odeslano').text('Odesláno!');
-        }else
-        $('#odeslano').text('Není odesláno!');
-
-    });
-
-    function spocitej() {
-        cenakolo = 0; pocet=1;
-        for (let i = 0; i < druhArray.length; i++) {
-            if (druhArray[i].checked) {
-                pocet = pocetArray[i].value;
-                cenakolo += parseInt(druhArray[i].value * pocet*dny);
-            }
-        }
-    };
-    
-    function predstavaUzivatel() {
-        let uzivatel = parseInt($('#predstava').val());
-        if (cenakolo>uzivatel) {
-            hlaska='Vaše představa je nereálná!';
-
-        } else {
-            hlaska='Udaná cena odpovídá požadavku.';
-        };
-    };
-
-    function radiob(){
-        prubeznaCena = 0; procenta = 0; cyklonosic = 0;
-        cyklonosic = $('.nosic:checked').val();
-        procenta = parseFloat(cyklonosic / 100);
-        prubeznaCena = cenakolo;
-        cenakolo = parseInt(prubeznaCena * procenta + prubeznaCena);
+    if (document.f1.elements[0].checked) {
+        x=parseInt(document.f1.elements[0].value);
+        pocet=document.f1.elements[1].value;
+        cenakolo += x*pocet;;
+    }
+    if (document.f2.elements[0].checked) {
+        x=parseInt(document.f2.elements[0].value);
+        pocet=document.f2.elements[1].value;
+        cenakolo += x*pocet;
+    }
+    if (document.f3.elements[0].checked) {
+        x=parseInt(document.f3.elements[0].value);
+        pocet=document.f3.elements[1].value;
+        cenakolo += x*pocet;
+    }
+    if (document.f4.elements[0].checked) {
+        x=parseInt(document.f4.elements[0].value);
+        pocet=document.f4.elements[1].value;
+        cenakolo += x*pocet;
     }
 
-   
-});
+    dny=parseInt(document.f5.dobaZapujceni.value);
 
+    cyklonosic= document.f6.rad.value
+    prubeznaCena=cenakolo*dny;
+    let procenta=parseFloat(cyklonosic/100);
+    prubeznaCena=prubeznaCena*procenta+prubeznaCena;
+    
+    let uzivatel=document.f7.predstava.value;
+    if(prubeznaCena >uzivatel){
+        document.querySelector("#realita").textContent=('Vaše představa je nereálná!');
+    }else{
+        document.querySelector("#realita").textContent=('Udaná cena odpovídá požadavku.');
 
+    }
+    document.querySelector('#cena').textContent = prubeznaCena+" ,- Kč";
+}
 
-
+function Odesli(){
+    let zadane=document.f9.mail.value;
+        if(zadane.includes('@')){
+            document.querySelector('#odeslano').textContent="Odesláno.";
+        }else
+            document.querySelector('#odeslano').textContent="Není odesláno!";
+        document
+}
